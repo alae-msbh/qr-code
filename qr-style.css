@@ -22,12 +22,7 @@
     z-index: -1;
     color: white;
 }
-.video-box i{
-    color: white;
-    font-size: 280px;
-    opacity:.5
-    /* font-weight: thin; */
-}
+
 .scan-resault{
     position: absolute;
     top: 0px
@@ -38,3 +33,34 @@
     top: 100px;
     font-size:2rem;
 }
+.qr-scanner-img{
+    width: 300px;
+    position: relative;
+}
+.qr-scanner-img img{
+    width: 100%;
+}
+.line-scanner{
+    height: 10px;
+    width: 100%;
+    background-color:#FEBB27;
+    position: absolute;
+    animation-name: line-scanner;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes line-scanner {
+    0%   {
+        top:70px;
+    }
+    50% {
+        top: 215px;
+    }
+    100% {
+        top: 70px;
+    }
+    /* 100% {top: 210px;}
+    100% {top: 210px;} */
+  }
