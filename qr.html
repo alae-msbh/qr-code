@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="qr-style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
+</head>
+<body>
+    
+    <!-- video --> 
+    <div class="video-box">
+        <video id="preview"></video>
+        <p class="message">امسح الكود الذي في الطاولة</p>
+        <i class="ri-qr-scan-2-line"></i>
+    </div>
+    <div class="scan-resault">
+        <label>SCAN QR CODE</label>
+        <input type="text" name="text" id="text" readonyy="" placeholder="scan qrcode" class="form-control">
+    </div>
+
+
+
+
+
+
+
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webrtc-adapter/3.3.3/adapter.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js"></script>
+    <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+
+    <!-- insta scan -->
+    <script>
+    let scanner = new Instascan.Scanner({ video: document.getElementById('preview')});
+    Instascan.Camera.getCameras().then(function(cameras){
+        if (cameras.length > 0) {
+            //If the user has a rear/back camera
+            if (cameras[1]) {
+                //use that by default
+                scanner.start(cameras[1]);
+            } else {
+                //else use front camera
+                scanner.start(cameras[0]);
+            }
+        } else {
+            //if no cameras are detected give error
+            console.error('No cameras found.');
+        }
+
+    }).catch(function(e) {
+        console.error(e);
+    });
+
+    scanner.addListener('scan',function(c){
+        document.getElementById('text').value=c;
+    });
+
+    </script>
+</body>
+</html>
